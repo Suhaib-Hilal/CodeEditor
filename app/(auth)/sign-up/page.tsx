@@ -8,6 +8,7 @@ import { AuthError, isAuthError } from "@/app/errors/auth_error";
 import FirebaseDatabase from "../services/firebase_database";
 import User from "../models/user";
 import { UserCredential } from "firebase/auth";
+import { Password } from "../models/password";
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
@@ -22,12 +23,11 @@ export default function SignUp() {
       return;
     }
     setErrorMsg("");
-
     const user = new User(
       (res as UserCredential).user.uid,
       username,
       email,
-      password
+      await Password.hashPassword(password),
     );
     await FirebaseDatabase.addUser(user);
   }
