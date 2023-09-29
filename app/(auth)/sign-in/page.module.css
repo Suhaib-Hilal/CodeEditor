@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&family=Open+Sans:ital,wght@0,300;0,800;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500&display=swap');
+
+
+.main {
+  background-color: #151415;
+  height: 100vh;
+  display: flex;
+  font-family: "Poppins";
+}
+
+.title {
+  font-size: 2em;
+  font-weight: bold;
+  color: whitesmoke;
+}
+
+.star {
+  font-weight: bold;
+  font-size: 2.2em;
+  margin-right: 4em;
+}
+
+.smallText {
+  font-size: 0.7em;
+  color: gray;
+  text-align: center;
+}
+
+.errorMsg {
+  color: tomato;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+}
+
+.bold {
+  font-weight: bold;
+  color: whitesmoke;
+}
+
+.img {
+  height: 100vh;
+  width: 45%;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.leftPart {
+  width: 55%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+
+.textField {
+  border: none;
+  border-radius: 6px;
+  background-color: transparent;
+  border-bottom: 3px solid grey;
+  padding: 4px 10px;
+  width: 80%;
+  font-family: "Poppins";
+}
+
+.textField:focus {
+  outline: none;
+  color: whitesmoke;
+}
+
+.signInBtn {
+  width: 80%;
+  background-color: whitesmoke;
+  border: none;
+  width: 80%;
+  color: #0C0D11;
+  padding: 10px 0;
+  border-radius: 6px;
+  font-weight: bold;
+}
