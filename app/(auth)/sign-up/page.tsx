@@ -23,11 +23,20 @@ export default function SignUp() {
       return;
     }
     setErrorMsg("");
+    const usernameExists = await FirebaseDatabase.doesUsernameExist(username);
+    if (usernameExists) {
+      setErrorMsg("Username already taken");
+      return;
+    } else if (username === "") {
+      setErrorMsg("Username must not be empty!");
+      return;
+    }
+    setErrorMsg("");
     const user = new User(
       (res as UserCredential).user.uid,
       username,
       email,
-      await Password.hashPassword(password),
+      await Password.hashPassword(password)
     );
     await FirebaseDatabase.addUser(user);
   }
