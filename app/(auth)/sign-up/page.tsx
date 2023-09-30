@@ -23,6 +23,7 @@ export default function SignUp() {
       return;
     }
     setErrorMsg("");
+
     const usernameExists = await FirebaseDatabase.doesUsernameExist(username);
     if (usernameExists) {
       setErrorMsg("Username already taken");
