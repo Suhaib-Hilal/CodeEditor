@@ -26,6 +26,13 @@
   text-align: center;
 }
 
+.successMsg {
+  color: aquamarine;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+}
+
 .smallText {
   font-size: 0.7em;
   color: gray;
@@ -85,7 +92,48 @@
   font-family: "Poppins";
 }
 
-.textField:focus {
+.emailTextField {
+  border: none;
+  border-radius: 6px;
+  background-color: transparent;
+  border-bottom: 3px solid grey;
+  padding: 4px 10px;
+  width: 100%;
+  font-family: "Poppins";
+  flex: 3;
+}
+
+.row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.sendOtpBtn {
+  background-color: whitesmoke;
+  flex: 1;
+  border: none;
+  color: #0C0D11;
+  padding: 10px 4px;
+  margin-left: 10px;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+.otpTextField {
+  border: none;
+  border-radius: 6px;
+  background-color: transparent;
+  border-bottom: 3px solid grey;
+  padding: 4px 10px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  width: 8em;
+  font-family: "Poppins";
+}
+
+.textField:focus, .otpTextField:focus, .emailTextField:focus {
   outline: none;
   color: whitesmoke;
 }
