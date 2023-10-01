@@ -33,6 +33,13 @@
   text-align: center;
 }
 
+.successMsg {
+  color: aquamarine;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+}
+
 .bold {
   font-weight: bold;
   color: whitesmoke;

@@ -6,19 +6,27 @@ import Image from "next/image";
 import { useState } from "react";
 import FirebaseAuth from "../services/_auth_service";
 import { AuthError, isAuthError } from "@/app/errors/auth_error";
+import { Message, MessageType } from "../models/message";
+import FirebaseDatabase from "../services/firebase_database";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMsg, setErrorMsg] = useState("");
+  const [msg, setMsg] = useState<Message>();
 
   async function signIn() {
-    const res = await FirebaseAuth.signInWithEmailAndPassword(email, password);
-    if (isAuthError(res)) {
-      setErrorMsg((res as AuthError).message);
+    setMsg(undefined);
+    if (!(await FirebaseDatabase.doesUserExist(email, password))) {
+      setMsg({
+        content: "Invalid email or password",
+        type: MessageType.ERROR_MESSAGE,
+      });
       return;
     }
-    setErrorMsg("");
+    setMsg({
+      content: "Loggin you in...",
+      type: MessageType.SUCCESS_MESSAGE,
+    });
   }
 
   return (
@@ -47,7 +55,17 @@ export default function SignIn() {
         <button className={styles.signInBtn} onClick={signIn}>
           Sign in
         </button>
-        <p className={styles.errorMsg}>{errorMsg}</p>
+        {msg && (
+          <p
+            className={
+              msg.type == MessageType.ERROR_MESSAGE
+                ? styles.errorMsg
+                : styles.successMsg
+            }
+          >
+            {msg.content}
+          </p>
+        )}
         <p className={styles.smallText}>
           Don't have an account?
           <Link href="/sign-up" className={styles.bold}>
