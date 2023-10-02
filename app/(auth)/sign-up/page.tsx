@@ -19,48 +19,52 @@ export default function SignUp() {
   const [otpText, setOtpText] = useState("");
   const [expectedOtp, setExpectedOtp] = useState("");
 
-  async function signUp() {
-    const res = await FirebaseAuth.signUpWithEmailAndPassword(email, password);
-    if (isAuthError(res)) {
-      setMsg({
-        content: (res as AuthError).message,
-        type: MessageType.ERROR_MESSAGE,
-      });
-      return;
-    }
-    setMsg(undefined);
-
+  async function usernameIsFine(): Promise<boolean> {
     const usernameExists = await FirebaseDatabase.doesUsernameExist(username);
     if (usernameExists) {
       setMsg({
         content: "Username already taken",
         type: MessageType.ERROR_MESSAGE,
       });
-      return;
     } else if (username === "") {
       setMsg({
         content: "Username must not be empty!",
         type: MessageType.ERROR_MESSAGE,
       });
-      return;
-    } else if (
-      otpText === "" ||
-      otpText.length < 6 ||
-      otpText.length > 6 ||
-      !(otpText === expectedOtp)
-    ) {
-      console.log(otpText, expectedOtp);
-      setMsg({
-        content: "Invalid OTP",
-        type: MessageType.ERROR_MESSAGE,
-      });
-      return;
-    } else if (otpText === expectedOtp) {
+    }
+    return false;
+  }
+
+  function otpIsCorrect(): boolean {
+    if (otpText === expectedOtp) {
       setMsg({
         content: "You are all set!",
         type: MessageType.SUCCESS_MESSAGE,
       });
+      return true;
     }
+    return false;
+  }
+
+  async function firebaseAuthSignUp() {
+    const res = await FirebaseAuth.signUpWithEmailAndPassword(email, password);
+    if (isAuthError(res)) {
+      setMsg({
+        content: (res as AuthError).message,
+        type: MessageType.ERROR_MESSAGE,
+      });
+      return "FAILED";
+    }
+    setMsg(undefined);
+    return res;
+  }
+
+  async function signUp() {
+    const res = await firebaseAuthSignUp();
+    if (res === "FAILED") return;
+    
+    if (!((await usernameIsFine()) && otpIsCorrect())) return;
+
     const user = new User(
       (res as UserCredential).user.uid,
       username,
@@ -78,15 +82,12 @@ export default function SignUp() {
         "Content-type": "application/json; charset=UTF-8",
       },
     });
-    console.log(1);
     const data = await res.json();
-    console.log(2);
     if (res.status != 200) {
       setMsg({ content: data.error, type: MessageType.ERROR_MESSAGE });
       return;
     }
     setMsg({ content: "OTP Sent", type: MessageType.SUCCESS_MESSAGE });
-    console.log(data);
     setExpectedOtp(data);
   }
 
