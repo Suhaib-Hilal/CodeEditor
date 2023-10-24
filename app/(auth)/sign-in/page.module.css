@@ -1,16 +1,32 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&family=Open+Sans:ital,wght@0,300;0,800;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&family=Open+Sans:ital,wght@0,300;0,800;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500&display=swap");
 
 .main {
-  background-color: #151415;
-  height: 100vh;
-  display: flex;
+  background-color: #0c1019;
   font-family: "Poppins";
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin-inline: auto;
+  width: 50%;
+  gap: 0.5em;
+
+}
+
+.line {
+  width: 40%;
+  height: 0.5px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: grey;
+  border: none;
 }
 
 .title {
-  font-size: 2em;
-  font-weight: bold;
+  font-size: 1.3em;
+  font-weight: 500;
   color: whitesmoke;
 }
 
@@ -24,6 +40,12 @@
   font-size: 0.7em;
   color: gray;
   text-align: center;
+}
+
+.mediumText {
+  display: flex;
+  font-size: 0.8em;
+  align-items: center;
 }
 
 .errorMsg {
@@ -40,9 +62,20 @@
   text-align: center;
 }
 
-.bold {
-  font-weight: bold;
-  color: whitesmoke;
+.pageLink {
+  color: #2c91f7;
+}
+
+.line {
+  border: none;
+  background-color: grey;
+  width: 80%;
+  height: 0.5px;
+  border-radius: 4px;
+}
+
+.forgotPassword {
+  margin: 1.2em 0;
 }
 
 .img {
@@ -52,37 +85,32 @@
   border-bottom-left-radius: 20px;
 }
 
-.leftPart {
-  width: 55%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1em;
-}
-
 .textField {
-  border: none;
-  border-radius: 6px;
-  background-color: transparent;
-  border-bottom: 3px solid grey;
-  padding: 4px 10px;
+  color: whitesmoke;
+  background-color: #161A23;
+  border: 1px solid #383838;
+  border-radius: 4px;
+  padding: 8px 10px;
   width: 80%;
   font-family: "Poppins";
 }
 
 .textField:focus {
   outline: none;
-  color: whitesmoke;
+  border-color: #0582ff;
+}
+
+.textField:hover {
+  border-color: #0582ff;
 }
 
 .signInBtn {
-  width: 80%;
-  background-color: whitesmoke;
-  border: none;
-  width: 80%;
-  color: #0C0D11;
-  padding: 10px 0;
-  border-radius: 6px;
+  background-color: #0582ff;
+  padding: 8px 18px;
+  font-size: 14px;
+  font-family: "Poppins";
   font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  width: 80%;
 }

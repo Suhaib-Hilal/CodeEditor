@@ -1,0 +1,96 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&family=Open+Sans:ital,wght@0,300;0,800;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500&display=swap");
+
+.body {
+  background-color: #0c1019;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: "Poppins";
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.smallText {
+  font-size: 0.6em;
+  color: gray;
+  text-align: center;
+}
+
+.error {
+ color: tomato;
+ text-align: center;
+}
+
+.mediumText {
+  display: flex;
+  font-size: 0.8em;
+  align-items: center;
+}
+
+.title {
+  font-size: 1.5em;
+}
+
+.bold {
+  font-weight: bold;
+  color: whitesmoke;
+}
+
+
+.textField {
+  color: whitesmoke;
+  background-color: #161a23;
+  border: 1px solid #383838;
+  border-radius: 4px;
+  padding: 8px 10px;
+  font-family: "Poppins";
+}
+
+.otpTextField {
+  color: whitesmoke;
+  background-color: #161a23;
+  border: 1px solid #383838;
+  border-radius: 4px;
+  padding: 8px 10px;
+  font-family: "Poppins";
+  text-align: center;
+  font-size: large;
+  font-weight: bold;
+}
+
+.textField:hover, .otpTextField:hover {
+  border-color: #0582ff;
+}
+
+.textField:focus, .otpTextField:focus {
+  outline: none;
+}
+
+.textField::placeholder, .otpTextField::placeholder {
+  color: whitesmoke;
+}
+
+.sendOtpBtn, .verifyOtpBtn, .resetPasswordBtn {
+  background-color: #0582ff;
+  padding: 6px 18px;
+  font-size: 15px;
+  font-family: "Poppins";
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #0582ff;
+  transition: all 0.3s 0.3s;
+}
+
+.sendOtpBtn:disabled, .verifyOtpBtn:disabled, .resetPasswordBtn:disabled {
+  box-shadow: none;
+  background-color: #106ac4;
+  color: #37afff;
+}

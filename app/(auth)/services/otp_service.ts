@@ -5,13 +5,13 @@ export default class OtpService {
   static async sendOtp(email: string) {
     const otp = getRandomNumber(6).toString();
     const transporter = createTransport({
-      service: "gmail",
+      port: 465,
+      host: "smtp.gmail.com",
       auth: {
         user: process.env.NODEMAILER_EMAIL,
         pass: process.env.NODEMAILER_PASSWORD,
       },
       secure: true,
-      port: 587,
     });
 
     const mailOptions = {

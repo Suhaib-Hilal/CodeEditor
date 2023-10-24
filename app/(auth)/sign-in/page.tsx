@@ -31,56 +31,45 @@ export default function SignIn() {
 
   return (
     <div className={styles.main}>
-      <div className={styles.leftPart}>
-        <p className={styles.star}>✦</p>
-        <p className={styles.title}>Sign in</p>
-        <input
-          type="email"
-          placeholder="Email"
-          className={styles.textField}
-          value={email}
-          onChange={(e) => {
-            setEmail(e.currentTarget.value);
-          }}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          className={styles.textField}
-          value={password}
-          onChange={(e) => {
-            setPassword(e.currentTarget.value);
-          }}
-        />
-        <button className={styles.signInBtn} onClick={signIn}>
-          Sign in
-        </button>
-        {msg && (
-          <p
-            className={
-              msg.type == MessageType.ERROR_MESSAGE
-                ? styles.errorMsg
-                : styles.successMsg
-            }
-          >
-            {msg.content}
-          </p>
-        )}
-        <p className={styles.smallText}>
-          Don't have an account?
-          <Link href="/sign-up" className={styles.bold}>
-            {" "}
-            Sign Up here
-          </Link>
-        </p>
-      </div>
-      <Image
-        src="/table.jpg"
-        width={400}
-        height={400}
-        alt="cube"
-        className={styles.img}
+      <p className={styles.title}>Log in to your account</p>
+      <input
+        type="email"
+        placeholder="Email"
+        className={styles.textField}
+        value={email}
+        onChange={(e) => {
+          setEmail(e.currentTarget.value);
+        }}
       />
+      <input
+        type="password"
+        placeholder="Password"
+        className={styles.textField}
+        value={password}
+        onChange={(e) => {
+          setPassword(e.currentTarget.value);
+        }}
+      />
+      <p className={styles.mediumText}>{msg?.content}</p>
+      <button className={styles.signInBtn} onClick={signIn}>
+        Log in
+      </button>
+      <p className={styles.mediumText}>
+        <Link
+          href="/reset-password"
+          className={`${styles.pageLink} ${styles.forgotPassword}`}
+        >
+          {" "}
+          Forgot password?
+        </Link>
+      </p>
+      <p className={styles.smallText}>
+        Don't have an account?
+        <Link href="/sign-up" className={styles.pageLink}>
+          {" "}
+          Sign Up here
+        </Link>
+      </p>
     </div>
   );
 }

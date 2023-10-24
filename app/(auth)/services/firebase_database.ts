@@ -7,6 +7,7 @@ import {
   query,
   where,
   getDocs,
+  updateDoc,
 } from "firebase/firestore";
 import User from "../models/user";
 import { Password } from "../models/password";
@@ -34,13 +35,29 @@ export default class FirebaseDatabase {
     const querySnap = await getDocs(emailSnap);
 
     if (querySnap.size === 0) {
-      console.log('No matching document found.');
+      console.log("No matching document found.");
       return;
     }
 
     const userDoc = querySnap.docs[0];
     const userPass = userDoc.get("password");
 
-    return (await Password.comparePassword(password, userPass))
+    return await Password.comparePassword(password, userPass);
+  }
+
+  static async userPasswordReset(email: string, password: string) {
+    const usersCollection = collection(db, "users");
+    const emailSnap = query(usersCollection, where("email", "==", email));
+    const querySnap = await getDocs(emailSnap);
+
+    if (querySnap.size === 0) {
+      console.log("No matching document found.");
+      return;
+    }
+
+    const userDoc = doc(db, "users", querySnap.docs[0].id);
+    await updateDoc(userDoc, {
+      password: password,
+    });
   }
 }

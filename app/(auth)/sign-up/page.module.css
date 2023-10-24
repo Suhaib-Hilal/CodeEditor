@@ -1,16 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&family=Open+Sans:ital,wght@0,300;0,800;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&family=Open+Sans:ital,wght@0,300;0,800;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500&display=swap");
 
 .main {
   display: flex;
   color: white;
   font-family: "Poppins";
-  background-color: #0C0D11;
+  background-color: #0c0d11;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 .title {
-  font-weight: bold;
-  font-size: 1.8em;
+  font-size: 1.4em;
 }
 
 .star {
@@ -66,85 +67,52 @@
   gap: 20px;
 }
 
-.signUpOptions {
-  display: flex;
-  gap: 1em;
-  width: 92%;
-}
-
-.signUpOption {
-  border: 1px grey solid;
-  font-size: 14px;
-  padding: 6px;
-  text-align: center;
-  margin: 1em 0;
-  border-radius: 4px;
-  width: 50%;
-}
-
-.textField {
-  border: none;
-  border-radius: 6px;
-  background-color: transparent;
-  border-bottom: 3px solid grey;
-  padding: 4px 10px;
-  width: 100%;
-  font-family: "Poppins";
-}
-
-.emailTextField {
-  border: none;
-  border-radius: 6px;
-  background-color: transparent;
-  border-bottom: 3px solid grey;
-  padding: 4px 10px;
-  width: 100%;
-  font-family: "Poppins";
-  flex: 3;
-}
-
-.row {
-  width: 100%;
-  display: flex;
-  align-items: center;
-}
-
-.sendOtpBtn {
-  background-color: whitesmoke;
-  flex: 1;
-  border: none;
-  color: #0C0D11;
-  padding: 10px 4px;
-  margin-left: 10px;
-  border-radius: 6px;
-  font-weight: bold;
-}
-
-.otpTextField {
-  border: none;
-  border-radius: 6px;
-  background-color: transparent;
-  border-bottom: 3px solid grey;
-  padding: 4px 10px;
-  text-align: center;
-  font-size: 18px;
-  font-weight: bold;
-  width: 8em;
-  font-family: "Poppins";
-}
-
-.textField:focus, .otpTextField:focus, .emailTextField:focus {
-  outline: none;
+.textField::placeholder {
   color: whitesmoke;
 }
 
-.createAccountBtn {
-  background-color: whitesmoke;
-  border: none;
-  width: 94%;
-  color: #0C0D11;
-  padding: 10px 0;
-  border-radius: 6px;
-  font-weight: bold;
+.textField {
+  color: whitesmoke;
+  background-color: #161a23;
+  border: 1px solid #383838;
+  border-radius: 4px;
+  padding: 8px 10px;
+  font-family: "Poppins";
 }
 
+.textField:hover {
+  border-color: #0582ff;
+}
+
+.textField:focus {
+  outline: none;
+  border-color: #0582ff;
+}
+
+.sendOtpBtn {
+  flex: 1;
+  background-color: #0582ff;
+  padding: 8px;
+  font-size: 14px;
+  font-family: "Poppins";
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  width: 45%;
+}
+
+.createAccountBtn {
+  background-color: #0582ff;
+  padding: 6px 18px;
+  font-size: 15px;
+  font-family: "Poppins";
+  border: none;
+  width: 96%;
+  border-radius: 4px;
+  transition: all 0.3s 0.3s;
+}
+
+.createAccountBtn:disabled {
+  background-color: #0b5095;
+  color: #37afff;
+}
