@@ -45,7 +45,7 @@ export default class FirebaseDatabase {
     return await Password.comparePassword(password, userPass);
   }
 
-  static async userPasswordReset(email: string, password: string) {
+  static async resetUserPassword(email: string, password: string) {
     const usersCollection = collection(db, "users");
     const emailSnap = query(usersCollection, where("email", "==", email));
     const querySnap = await getDocs(emailSnap);
