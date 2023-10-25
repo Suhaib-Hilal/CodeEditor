@@ -131,7 +131,7 @@ function PasswordResetPageDesign({
   updatePassword: Function;
 }) {
   async function resetPassword() {
-    await FirebaseDatabase.userPasswordReset(email, password);
+    await FirebaseDatabase.resetUserPassword(email, password);
   }
 
   return (
