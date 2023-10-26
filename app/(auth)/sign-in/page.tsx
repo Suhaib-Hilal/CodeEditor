@@ -8,6 +8,8 @@ import FirebaseAuth from "../services/_auth_service";
 import { AuthError, isAuthError } from "@/app/errors/auth_error";
 import { Message, MessageType } from "../models/message";
 import FirebaseDatabase from "../services/firebase_database";
+import GlowableButton from "@/app/components/buttons/glowable_button/glowable_button";
+import { correctEmailFormat } from "@/app/utils/abc";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
@@ -50,10 +52,26 @@ export default function SignIn() {
           setPassword(e.currentTarget.value);
         }}
       />
-      <p className={styles.mediumText}>{msg?.content}</p>
-      <button className={styles.signInBtn} onClick={signIn}>
-        Log in
-      </button>
+      <p
+        className={`${styles.mediumText} ${
+          msg?.type == MessageType.ERROR_MESSAGE
+            ? styles.errorMsg
+            : styles.successMsg
+        }`}
+      >
+        {msg?.content}
+      </p>
+      <GlowableButton
+        text="Log in"
+        disabled={
+          correctEmailFormat(email) && password.length >= 10 ? false : true
+        }
+        onClick={signIn}
+        glow={false}
+        padding="6px 18px"
+        width="80%"
+        borderRadius="4px"
+      />
       <p className={styles.mediumText}>
         <Link
           href="/reset-password"

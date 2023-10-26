@@ -1,0 +1,17 @@
+.glowableBtn {
+  background-color: #0582ff;
+  font-size: 15px;
+  font-family: "Poppins";
+  border: none;
+  transition: all 0.3s 0.3s;
+}
+
+.glow {
+  box-shadow: 0 0 10px #0582ff;
+}
+
+.glowableBtn:disabled {
+  box-shadow: none;
+  background-color: #106ac4;
+  color: #37afff;
+}

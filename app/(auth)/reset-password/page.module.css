@@ -46,6 +46,7 @@
 
 
 .textField {
+  width: 94%;
   color: whitesmoke;
   background-color: #161a23;
   border: 1px solid #383838;
@@ -55,6 +56,7 @@
 }
 
 .otpTextField {
+  width: 90%;
   color: whitesmoke;
   background-color: #161a23;
   border: 1px solid #383838;
@@ -72,25 +74,9 @@
 
 .textField:focus, .otpTextField:focus {
   outline: none;
+  border-color: #0582ff;
 }
 
 .textField::placeholder, .otpTextField::placeholder {
   color: whitesmoke;
-}
-
-.sendOtpBtn, .verifyOtpBtn, .resetPasswordBtn {
-  background-color: #0582ff;
-  padding: 6px 18px;
-  font-size: 15px;
-  font-family: "Poppins";
-  border: none;
-  border-radius: 10px;
-  box-shadow: 0 0 10px #0582ff;
-  transition: all 0.3s 0.3s;
-}
-
-.sendOtpBtn:disabled, .verifyOtpBtn:disabled, .resetPasswordBtn:disabled {
-  box-shadow: none;
-  background-color: #106ac4;
-  color: #37afff;
 }

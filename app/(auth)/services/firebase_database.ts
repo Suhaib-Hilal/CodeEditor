@@ -31,8 +31,8 @@ export default class FirebaseDatabase {
 
   static async doesUserExist(email: string, password: string) {
     const usersCollection = collection(db, "users");
-    const emailSnap = query(usersCollection, where("email", "==", email));
-    const querySnap = await getDocs(emailSnap);
+    const emailQuery = query(usersCollection, where("email", "==", email));
+    const querySnap = await getDocs(emailQuery);
 
     if (querySnap.size === 0) {
       console.log("No matching document found.");
@@ -41,8 +41,7 @@ export default class FirebaseDatabase {
 
     const userDoc = querySnap.docs[0];
     const userPass = userDoc.get("password");
-
-    return await Password.comparePassword(password, userPass);
+    return (await Password.comparePassword(password, userPass));
   }
 
   static async resetUserPassword(email: string, password: string) {
@@ -57,7 +56,7 @@ export default class FirebaseDatabase {
 
     const userDoc = doc(db, "users", querySnap.docs[0].id);
     await updateDoc(userDoc, {
-      password: password,
+      password: Password.hashPassword(password),
     });
   }
 }

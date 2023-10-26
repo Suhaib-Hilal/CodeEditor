@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Message, MessageType } from "../models/message";
 import { correctEmailFormat } from "@/app/utils/abc";
 import FirebaseDatabase from "../services/firebase_database";
+import GlowableButton from "@/app/components/buttons/glowable_button/glowable_button";
 
 function SendOtpPageDesign({
   email,
@@ -48,15 +49,14 @@ function SendOtpPageDesign({
           updateEmail(e.currentTarget.value);
         }}
       />
-      {correctEmailFormat(email) ? (
-        <button onClick={sendOtp} className={styles.sendOtpBtn}>
-          Send OTP
-        </button>
-      ) : (
-        <button disabled className={styles.sendOtpBtn}>
-          Send OTP
-        </button>
-      )}
+      <GlowableButton
+        text="Send OTP"
+        disabled={correctEmailFormat(email) ? false : true}
+        onClick={sendOtp}
+        padding="6px 18px"
+        width="94%"
+        borderRadius="4px"
+      />
     </div>
   );
 }
@@ -92,7 +92,7 @@ function VerifyOtpPageDesign({
     <div className={styles.main}>
       <p className={styles.title}>Verify OTP</p>
       <p className={styles.mediumText}>
-        We have sent you a password reset otp to your email account.
+        We have sent you a password reset otp to your <br></br> email account.
       </p>
       <input
         type="text"
@@ -105,18 +105,15 @@ function VerifyOtpPageDesign({
       />
       {msg?.content == "Verification Failed!" ? (
         <p className={styles.error}>Verification Failed!</p>
-      ) : (
-        <p></p>
-      )}
-      {userOtp.length >= 5 ? (
-        <button onClick={verifyOtp} className={styles.verifyOtpBtn}>
-          Verify OTP
-        </button>
-      ) : (
-        <button disabled className={styles.verifyOtpBtn}>
-          Verify OTP
-        </button>
-      )}
+      ) : ""}
+      <GlowableButton
+        text="Verify OTP"
+        disabled={userOtp.length >= 5 ? false : true}
+        onClick={verifyOtp}
+        padding="6px 18px"
+        width="90%"
+        borderRadius="4px"
+      />
     </div>
   );
 }
@@ -138,7 +135,7 @@ function PasswordResetPageDesign({
     <div className={styles.main}>
       <p className={styles.title}>Reset Password</p>
       <p className={styles.mediumText}>
-        Your email has been verified! You can reset your password now.
+        Your email has been verified! You can reset your<br></br>password now.
       </p>
       <input
         type="password"
@@ -149,15 +146,14 @@ function PasswordResetPageDesign({
           updatePassword(e.currentTarget.value);
         }}
       />
-      {password.length >= 10 ? (
-        <button onClick={resetPassword} className={styles.resetPasswordBtn}>
-          Reset Password
-        </button>
-      ) : (
-        <button disabled className={styles.verifyOtpBtn}>
-          Reset Password
-        </button>
-      )}
+      <GlowableButton
+        text="Reset password"
+        disabled={password.length >= 10 ? false : true}
+        onClick={resetPassword}
+        padding="6px 18px"
+        width="90%"
+        borderRadius="4px"
+      />
     </div>
   );
 }

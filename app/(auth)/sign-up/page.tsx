@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import Link from "next/link";
 import styles from "./page.module.css";
 import { useState } from "react";
@@ -10,17 +9,13 @@ import User from "../models/user";
 import { UserCredential } from "firebase/auth";
 import { Password } from "../models/password";
 import { Message, MessageType } from "../models/message";
+import GlowableButton from "@/app/components/buttons/glowable_button/glowable_button";
+import { correctEmailFormat } from "@/app/utils/abc";
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [msg, setMsg] = useState<Message>();
-  const emailRegex = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/;
-
-  function correctEmailFormat() {
-    if (!email) return false;
-    return email.match(emailRegex);
-  }
 
   async function firebaseAuthSignUp() {
     const res = await FirebaseAuth.signUpWithEmailAndPassword(email, password);
@@ -38,7 +33,7 @@ export default function SignUp() {
   async function signUp() {
     const res = await firebaseAuthSignUp();
     if (res === "FAILED") return;
-    if (!correctEmailFormat()) return;
+    if (!correctEmailFormat(email)) return;
 
     const user = new User(
       (res as UserCredential).user.uid,
@@ -53,15 +48,15 @@ export default function SignUp() {
       <div className={styles.rightPart}>
         <div className={styles.signInPart}>
           <p className={styles.title}>Create an account</p>
-            <input
-              type="email"
-              placeholder="Email"
-              className={styles.textField}
-              value={email}
-              onChange={(e) => {
-                setEmail(e.currentTarget.value);
-              }}
-            />
+          <input
+            type="email"
+            placeholder="Email"
+            className={styles.textField}
+            value={email}
+            onChange={(e) => {
+              setEmail(e.currentTarget.value);
+            }}
+          />
           <input
             type="password"
             placeholder="Password"
@@ -71,15 +66,17 @@ export default function SignUp() {
               setPassword(e.currentTarget.value);
             }}
           />
-          {correctEmailFormat() ? (
-          <button onClick={signUp} className={styles.createAccountBtn}>
-            Create account
-          </button>
-        ) : (
-          <button disabled className={styles.createAccountBtn}>
-            Create account
-          </button>
-        )}
+          <GlowableButton
+            text="Create account"
+            disabled={
+              correctEmailFormat(email) && password.length >= 10 ? false : true
+            }
+            onClick={signUp}
+            glow={false}
+            padding="6px 18px"
+            width="82%"
+            borderRadius="4px"
+          />
           {msg && (
             <p
               className={
