@@ -151,7 +151,7 @@ function PasswordResetPageDesign({
         disabled={password.length >= 10 ? false : true}
         onClick={resetPassword}
         padding="6px 18px"
-        width="90%"
+        width="94%"
         borderRadius="4px"
       />
     </div>
